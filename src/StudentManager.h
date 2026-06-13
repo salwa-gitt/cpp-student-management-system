@@ -1,4 +1,7 @@
+#pragma once
+#include "Student.h"
 #include <vector>
+#include <string>
 
 class StudentManager
 {
@@ -8,10 +11,16 @@ class StudentManager
 
     public:
 
-        void addStudent();
-        void deleteStudent();
-        void searchStudent();
-        void updateStudent();
+        void addStudent(const Student& s);
+
+        void deleteStudent(const std::string& id);
+
+        void searchStudent(const std::string& id);
+
+        Student* findStudentById(const std::string& id);
+
+        void updateStudent(const std::string& id);
+
         void displayAllStudents();
         
 };
