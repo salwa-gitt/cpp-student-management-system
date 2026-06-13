@@ -1,30 +1,17 @@
-#pragma once
-
-
-// class student manager
-/*
-functions:
-    add
-    deleter
-    search
-    update
-    display all student
-*/
+#include <vector>
 
 class StudentManager
 {
     private:
-        // idk
-    
+        // making a database which stores all the student objects.
+        std::vector<Student> students;
+
     public:
 
         void addStudent();
-
         void deleteStudent();
-
         void searchStudent();
-
         void updateStudent();
-
         void displayAllStudents();
+        
 };
