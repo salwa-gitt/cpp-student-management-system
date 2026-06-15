@@ -5,6 +5,8 @@
 void StudentManager::addStudent(const Student& s)
 {
     students.push_back(s);
+    
+    std::cout << "Student added successfully!" << std::endl;
 }
 
 void StudentManager::deleteStudent(const std::string& id)
@@ -14,7 +16,7 @@ void StudentManager::deleteStudent(const std::string& id)
         if (it->getStudentId() == id)
         {
             students.erase(it);
-            std::cout << "Student deleted successfully\n";
+            std::cout << "\nStudent deleted successfully!\n";
             return;
         }
 
@@ -28,11 +30,12 @@ void StudentManager::searchStudent(const std::string& id)
 
     if (student != nullptr)
     {
+        std::cout << "\n";
         student->displayStudent();
     }
     else
     {
-        std::cout << "Student not found\n";
+        std::cout << "\nStudent not found!\n";
     }
     
 
@@ -148,15 +151,20 @@ void StudentManager::displayAllStudents()
 
     if (students.empty())
     {
-        std::cout << "no students availabe\n";
+        std::cout << "\nno students availabe\n";
         return;
     }
 
     for (auto& student: students)
     {
-        std::cout << "\n\n";
+        std::cout << "\n";
         student.displayStudent();
-        std::cout << "\n\n";
+        std::cout << "\n";
         
     }
+}
+
+bool StudentManager::idExists(const std::string& id)
+{
+    return findStudentById(id) != nullptr;
 }

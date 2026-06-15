@@ -22,5 +22,7 @@ class StudentManager
         void updateStudent(const std::string& id);
 
         void displayAllStudents();
+
+        bool idExists(const std::string& id);
         
 };
