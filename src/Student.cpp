@@ -90,5 +90,5 @@ void Student::displayStudent()
     std::cout << "Student CGPA: " << getCgpa() << std::endl;
     std::cout << "Student Department: " << getDepartment() << std::endl;
     std::cout << "Student Attendance Percentage: " 
-         << getAttendancePercentage() << std::endl;
+         << getAttendancePercentage() << "%" << std::endl;
 }

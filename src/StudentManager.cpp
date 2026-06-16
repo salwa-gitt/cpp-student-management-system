@@ -24,7 +24,70 @@ void StudentManager::deleteStudent(const std::string& id)
     std::cout << "Student not found\n";
 }
 
-void StudentManager::searchStudent(const std::string& id)
+void StudentManager::searchStudent()
+
+{
+    int userChoice;
+
+    std::cout << "Choose search type:\n";
+    std::cout << "1. Search by ID\n";
+    std::cout << "2. Search by Name\n";
+
+    while (true)
+    {
+        std::cout << "Enter search type (Num only): ";
+
+        if (!(std::cin >> userChoice))
+        {
+            std::cout << "Invalid Input!\n";
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            continue;
+        }
+        
+        break;
+
+    }
+
+    switch (userChoice)
+    {  
+        case 1:
+        {
+            std::string stdId;
+
+            std::cout << "Enter ID to search: ";
+            std::cin.ignore();
+            std::getline(std::cin, stdId);
+
+            searchStudentById(stdId);
+
+            break;
+        }
+
+        case 2:
+        {
+            std::string stdName;
+
+            std::cout << "Enter Name to search: ";
+            std::cin.ignore();
+            std::getline(std::cin, stdName);
+
+            searchStudentByName(stdName);
+
+            break;
+        }
+        
+        default:
+        {
+            std::cout << "Invalid Input!\n";
+            break;
+        }
+         
+    }
+
+}
+
+void StudentManager::searchStudentById(const std::string& id)
 {
     Student* student = findStudentById(id);
 
@@ -41,8 +104,26 @@ void StudentManager::searchStudent(const std::string& id)
 
 }
 
+
+
+void StudentManager::searchStudentByName(const std::string& name)
+{
+    for (auto& student : students)
+    {
+        if (student.getName() == name)
+        {
+            std::cout << "\n";
+            student.displayStudent();
+        }
+    }
+
+    std::cout << "Student Not Found.\n";
+}
+
+
 Student* StudentManager::findStudentById(const std::string& id)
 {
+
     for (auto& student : students)
     {
         if (student.getStudentId() == id)

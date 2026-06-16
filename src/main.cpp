@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
+#include <limits>
 #include "Student.h"
 #include "StudentManager.h"
 
-
+void clearInputBuffer();
 
 int main(void)
 {
@@ -29,11 +30,12 @@ int main(void)
         {
             std::cout << "Invalid Input!\n";
             std::cin.clear(); // reset error state
-            std::cin.ignore(10000, '\n'); // flush bad input
+            clearInputBuffer(); // “Throw away everything left in the input buffer until I hit a newline.
             continue;
         }
 
         std::cout << "\n";
+        clearInputBuffer();
 
         switch (inputChoice)
         {
@@ -43,7 +45,6 @@ int main(void)
             bool idExist = false;
             
             std::cout << "Enter ID to add: ";
-            std::cin.ignore();
             std::getline(std::cin, studentId);
 
             
@@ -63,18 +64,72 @@ int main(void)
                 std::cout << "Enter Name: ";
                 std::getline(std::cin, studentName);
 
-                std::cout << "Enter Age: ";
-                std::cin >> studentAge;
+                while (true)
+                {
+                    std::cout << "Enter Age: ";
+                    if (!(std::cin >> studentAge))
+                    {
+                        std::cout << "Invalid Input!\n";
+                        std::cin.clear();
+                        clearInputBuffer();
+                        continue;
+                    }
+                    clearInputBuffer();
+
+                    if (studentAge > 0)
+                    {
+                        break;
+                    }
+
+                    std::cout << "Invalid Input. Try Again\n";
+                }
+
 
                 std::cout << "Enter Department: ";
-                std::cin.ignore();
                 std::getline(std::cin, studentDepartment);
 
-                std::cout << "Enter CGPA: ";
-                std::cin >> studentCGPA;
+                while (true)
+                {
+                    std::cout << "Enter CGPA: ";
 
-                std::cout << "Enter Attendance Percentage: ";
-                std::cin >> studentAttenPercent;
+                    if (!(std::cin >> studentCGPA))
+                    {
+                        std::cout << "Invalid Input.\n";
+                        std::cin.clear();
+                        clearInputBuffer();
+                        continue;
+                    }
+                    clearInputBuffer();
+
+                    if (studentCGPA >= 0.0 && studentCGPA <= 4.0)
+                    {
+                        break;
+                    }
+
+                    std::cout << "Invalid Input. Try Again!\n";
+                }
+
+                
+                while (true)
+                {
+                    std::cout << "Enter Attendance Percentage: ";
+
+                    if (!(std::cin >> studentAttenPercent))
+                    {
+                        std::cout << "Invalid Input!\n";
+                        std::cin.clear();
+                        clearInputBuffer();
+                        continue;
+                    }
+                    clearInputBuffer();
+
+                    if (studentAttenPercent >= 0.0 && studentAttenPercent <= 100.0)
+                    {
+                        break;
+                    }
+
+                    std::cout << "Invalid Input. Try Again!\n";
+                }
 
                 Student student(studentId, studentName,
                     studentAge, studentCGPA, studentDepartment, studentAttenPercent);
@@ -93,7 +148,6 @@ int main(void)
             std::string studentId;
 
             std::cout << "Enter ID to delete: ";
-            std::cin.ignore();
             std::getline(std::cin, studentId);
 
             manager.deleteStudent(studentId);
@@ -103,14 +157,7 @@ int main(void)
 
         case 3:
         {
-            std::string studentId;
-
-            std::cout << "Enter ID to search: ";
-            std::cin.ignore();
-            std::getline(std::cin, studentId);
-
-            manager.searchStudent(studentId);
-
+            manager.searchStudent();
             break;
         }
 
@@ -119,7 +166,6 @@ int main(void)
             std::string studentId;
 
             std::cout << "Enter ID to update: ";
-            std::cin.ignore();
             std::getline(std::cin, studentId);
 
             manager.updateStudent(studentId);
@@ -150,4 +196,9 @@ int main(void)
     
 
     return 0;
+}
+
+void clearInputBuffer()
+{
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

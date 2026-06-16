@@ -15,7 +15,11 @@ class StudentManager
 
         void deleteStudent(const std::string& id);
 
-        void searchStudent(const std::string& id);
+        void searchStudent();
+
+        void searchStudentByName(const std::string& name);
+
+        void searchStudentById(const std::string& id);
 
         Student* findStudentById(const std::string& id);
 
