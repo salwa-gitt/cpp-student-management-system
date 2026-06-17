@@ -19,6 +19,7 @@ int main(void)
         std::cout << "3. Search Student" << std::endl;
         std::cout << "4. Update Student" << std::endl;
         std::cout << "5. Display All Students" << std::endl;
+        std::cout << "6. Sort All Students" << std::endl;
         std::cout << "0. Exit\n" << std::endl;
 
         int inputChoice;
@@ -177,6 +178,12 @@ int main(void)
         {
 
             manager.displayAllStudents();
+            break;
+        }
+
+        case 6:
+        {
+            manager.sortStudents();
             break;
         }
 

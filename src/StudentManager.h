@@ -28,5 +28,13 @@ class StudentManager
         void displayAllStudents();
 
         bool idExists(const std::string& id);
+
+        void sortStudents();
+
+        void sortByCgpa();
+        
+        void sortByName();
+
+        void clearInputBuffer();
         
 };

@@ -1,6 +1,8 @@
 #include "StudentManager.h"
 #include <iostream>
 #include <string>
+#include <limits>
+#include <iomanip>
 
 void StudentManager::addStudent(const Student& s)
 {
@@ -44,7 +46,7 @@ void StudentManager::searchStudent()
             std::cin.ignore(10000, '\n');
             continue;
         }
-        
+
         break;
 
     }
@@ -248,4 +250,207 @@ void StudentManager::displayAllStudents()
 bool StudentManager::idExists(const std::string& id)
 {
     return findStudentById(id) != nullptr;
+}
+
+void StudentManager::sortByCgpa()
+{
+    if (students.empty())
+    {
+        std::cout << "\nNo students available to sort.\n";
+        return;
+    }
+
+
+    std::vector<Student> temp = students;
+
+    for (int i = 0; i < temp.size(); i++)
+    {
+        for (int j = i + 1; j < temp.size(); j++)
+        {
+            if (temp[i].getCgpa() < temp[j].getCgpa())
+            {
+                std::swap(temp[i], temp[j]);
+            }
+        }
+
+    }
+
+    std::cout << "\n+++++ -Sorted By CGPA- +++++\n" << std::endl;
+
+    std::cout << std::left << std::setw(25)
+    << "Name" << std::setw(10) << "CGPA"
+    << "\n";
+    
+    for (auto& student : temp)
+    {
+        std::cout << std::left << std::setw(25)
+        << student.getName() << std::setw(10) 
+        << student.getCgpa() << std::endl;
+    }
+}
+
+
+void StudentManager::sortByName()
+{
+    
+
+    if (students.empty())
+    {
+        std::cout << "\nNo students available to sort.\n";
+        return;
+    }
+    
+    
+    std::vector<Student> temp = students;
+
+    
+    int userChoice;
+
+    while (true)
+    {
+        std::cout << "Choose search type:\n";
+        std::cout << "1. Sort by A to Z\n";
+        std::cout << "2. Sort by Z to A\n";
+
+        std::cout << "\nEnter Your Choice (num only): ";
+        
+        if (!(std::cin >> userChoice))
+        {
+            std::cout << "Invalid Input!\n";
+            std::cin.clear();
+            clearInputBuffer();
+            continue;
+        }
+
+        std::cout << "\n";
+        break;
+    }
+
+    switch (userChoice)
+    {
+        case 1:
+        {
+            for (int i = 0; i < temp.size(); i++)
+            {
+                for (int j = i + 1; j < temp.size(); j++)
+                {
+                    if (temp[i].getName() > temp[j].getName())
+                    {
+                        std::swap(temp[i], temp[j]);
+                    }
+                }
+
+            }
+
+            std::cout << "\n+++-Sorted By Name (A-Z)-+++\n" << std::endl;
+
+            std::cout << std::left << std::setw(25)
+            << "Name" << std::setw(10) << "CGPA"
+            << "\n";
+                
+            for (auto& student : temp)
+            {
+                std::cout << std::left << std::setw(25)
+                << student.getName() << std::setw(10) 
+                << student.getCgpa() << '\n';
+            }
+
+            break;
+        }
+
+        case 2:
+        {
+            for (int i = 0; i < temp.size(); i++)
+            {
+                for (int j = i + 1; j < temp.size(); j++)
+                {
+                    if (temp[i].getName() < temp[j].getName())
+                    {
+                        std::swap(temp[i], temp[j]);
+                    }
+                }
+
+            }
+
+            std::cout << "\n+++-Sorted By Name (Z-A)-+++\n" << std::endl;
+
+            std::cout << std::left
+            << std::setw(25) << "Name"
+            << std::setw(10) << "CGPA"
+            << "\n";
+
+            
+            for (auto& student : temp)
+            {
+                std::cout << std::left
+                << std::setw(25) << student.getName()
+                << std::setw(10) << student.getCgpa()
+                << '\n';
+            }
+
+            break;
+        }
+        
+        default:
+        {
+            std::cout << "Invalid Input!" << std::endl;
+            break;
+        }
+    }
+
+
+    
+}
+
+void StudentManager::sortStudents()
+{
+    int userChoice;
+
+    while (true)
+    {
+        std::cout << "Choose Sort type:\n" << std::endl;
+        std::cout << "1. Sort by CGPA\n";
+        std::cout << "2. Sort by Name\n";
+
+        std::cout << "\nEnter Your Choice (num only): ";
+        
+        if (!(std::cin >> userChoice))
+        {
+            std::cout << "Invalid Input!" << std::endl;
+            std::cin.clear();
+            clearInputBuffer();
+            continue;
+        }
+
+        break;
+    }
+
+    switch (userChoice)
+    {
+
+        case 1:
+        {
+            sortByCgpa();
+            break;
+        }
+        
+        case 2:
+        {
+            sortByName();
+            break;
+        }
+        
+        default:
+        {
+            std::cout << "Invalid Input!" << std::endl;
+            break;
+        }
+            
+    }
+
+}
+
+void StudentManager::clearInputBuffer()
+{
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
