@@ -57,6 +57,6 @@ class Student
         
 
         // display function declaration
-        void displayStudent();
+        void displayStudent() const;
 };
 

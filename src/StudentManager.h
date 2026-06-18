@@ -36,5 +36,23 @@ class StudentManager
         void sortByName();
 
         void clearInputBuffer();
+
+        // Average CGPA of all Students
+        void averageCgpa();
+
+        //getting highest CGPA
+        void highestCgpaStudent();
+
+        //getting lower CGPA
+        void lowestCgpaStudent();
+
+        //Total students
+        void totalStudents();
+
+        //student below 75% in attendence
+        void studentBelowThreshold();
+
+        // filter by department
+        void filterByDepartment();
         
 };

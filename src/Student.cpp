@@ -82,7 +82,7 @@ float Student::getAttendancePercentage() const
 }
 
 
-void Student::displayStudent()
+void Student::displayStudent() const
 {
     std::cout << "Student ID: " << getStudentId() << std::endl;
     std::cout << "Student Name: " << getName() << std::endl;

@@ -454,3 +454,136 @@ void StudentManager::clearInputBuffer()
 {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
+
+
+//average cgpa of all students
+void StudentManager::averageCgpa()
+{
+    if (students.empty())
+    {
+        std::cout << "\nNo students available.\n";
+        return;
+    }
+    
+    
+    std::vector<Student> temp = students;
+
+    float totalCgpa = 0;
+    int size = students.size();
+    float averageCgpa = 0;
+
+    for (auto& student : temp)
+    {
+        totalCgpa += student.getCgpa();
+    }
+
+    averageCgpa = totalCgpa/size;
+
+    std::cout << "\nAverage CGPA: " << averageCgpa << std::endl;
+
+
+}
+
+//getting highest student among all students
+void StudentManager::highestCgpaStudent()
+{
+    if (students.empty())
+    {
+        std::cout << "No students available.\n";
+        return;
+    }
+
+    const Student* best = &students[0];
+
+    for (const auto& student : students)
+    {
+        if (student.getCgpa()> best->getCgpa())
+        {
+            best = &student;
+        }
+    }
+
+    std::cout << "Highest CGPA Student:\n\n";
+    std::cout << "Name: " << best->getName() << std::endl;
+    std::cout << "CGPA: " << best->getCgpa() << std::endl;
+}
+
+void StudentManager::lowestCgpaStudent()
+{
+    if (students.empty())
+    {
+        std::cout << "No students Available." << std::endl;
+        return;
+    }
+
+    const Student* worst = &students[0];
+
+    for (const auto& student : students)
+    {
+        if (student.getCgpa() < worst->getCgpa())
+        {
+            worst = &student;
+        }
+    }
+
+    std::cout << "Lowest CGPA Student:\n\n";
+    std::cout << "Name: " << worst->getName() << std::endl;
+    std::cout << "CGPA: " << worst->getCgpa() << std::endl;
+}
+
+void StudentManager::totalStudents()
+{
+    std::cout << "Total Students: " << students.size() << std::endl;
+}
+
+void StudentManager::studentBelowThreshold()
+{
+    if (students.empty())
+    {
+        std::cout << "\nNo Students Available.\n";
+        return;
+    }
+
+    //At Risk Students (Attendance < 75%)
+
+    for (const auto& student : students)
+    {
+        if (student.getAttendancePercentage() <= 75)
+        {
+            std::cout << "\n";
+            std::cout << "Name: " << student.getName() << std::endl;
+            std::cout << "Attendance Percentage: " 
+            << student.getAttendancePercentage() << std::endl;
+            std::cout << "\n";
+        }
+    }
+}
+
+void StudentManager::filterByDepartment()
+{
+    if (students.empty())
+    {
+        std::cout << "No Students Availabe.\n" << std::endl;
+        return;
+    }
+
+    std::string filter = "";
+
+    std::cout << "Enter department to filter: ";
+    std::cin >> filter;
+
+    for (const auto& student : students)
+    {
+        if (student.getDepartment() == filter)
+        {
+            std::cout << "\n\n";
+            student.displayStudent();
+            std::cout << "\n\n";
+        }
+    }
+    
+    else
+    {
+        std::cout << "Department Not Found!\n";
+    }
+}

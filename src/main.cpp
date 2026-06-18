@@ -20,6 +20,12 @@ int main(void)
         std::cout << "4. Update Student" << std::endl;
         std::cout << "5. Display All Students" << std::endl;
         std::cout << "6. Sort All Students" << std::endl;
+        std::cout << "7. Show Average CGPA" << std::endl;
+        std::cout << "8. Show Highest CGPA student" << std::endl;
+        std::cout << "9. Show Lowest CGPA student" << std::endl;
+        std::cout << "10. Show Total Students" << std::endl;
+        std::cout << "11. Show students at risk" << std::endl;
+        std::cout << "12. Filter by department" << std::endl;
         std::cout << "0. Exit\n" << std::endl;
 
         int inputChoice;
@@ -187,6 +193,43 @@ int main(void)
             break;
         }
 
+        case 7:
+        {
+            manager.averageCgpa();
+            break;
+        }
+
+        case 8:
+        {
+            manager.highestCgpaStudent();
+            break;
+        }
+
+        case 9:
+        {
+            manager.lowestCgpaStudent();
+            break;
+        }
+
+        case 10:
+        {
+            manager.totalStudents();
+            break;
+        }
+
+        case 11:
+        {
+            std::cout << "At Risk Students (Attendance < 75%)\n";
+            manager.studentBelowThreshold();
+            break;
+        }
+
+        case 12:
+        {
+            manager.filterByDepartment();
+            break;
+        }
+
         case 0:
         {
             std::cout << "\nExiting Program..." << std::endl;
@@ -199,8 +242,6 @@ int main(void)
             break;
         }
     }
-
-    
 
     return 0;
 }
