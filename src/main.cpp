@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <iomanip>
 #include "Student.h"
 #include "StudentManager.h"
 
@@ -20,12 +21,9 @@ int main(void)
         std::cout << "4. Update Student" << std::endl;
         std::cout << "5. Display All Students" << std::endl;
         std::cout << "6. Sort All Students" << std::endl;
-        std::cout << "7. Show Average CGPA" << std::endl;
-        std::cout << "8. Show Highest CGPA student" << std::endl;
-        std::cout << "9. Show Lowest CGPA student" << std::endl;
-        std::cout << "10. Show Total Students" << std::endl;
-        std::cout << "11. Show students at risk" << std::endl;
-        std::cout << "12. Filter by department" << std::endl;
+        std::cout << "7. Show Statistics" << std::endl;
+        std::cout << "8. Filter by department" << std::endl;
+        std::cout << "9. Show students at risk" << std::endl;
         std::cout << "0. Exit\n" << std::endl;
 
         int inputChoice;
@@ -182,7 +180,7 @@ int main(void)
 
         case 5:
         {
-
+            std::cout << "\n========================================= STUDENTS DISPLAY =========================================\n";
             manager.displayAllStudents();
             break;
         }
@@ -195,39 +193,43 @@ int main(void)
 
         case 7:
         {
-            manager.averageCgpa();
+
+            std::cout << "\n========================================= SYSTEM STATISTICS =========================================\n";
+            
+
+            std::cout << std::left 
+            << std::setw(15) << "Total Students"
+            << std::setw(15) << "Avg CGPA"
+            << std::setw(25) << "Highest CGPA Student"
+            << std::setw(25) << "Lowest CGPA Student"
+            << std::endl;
+
+            std::cout << "-------------------------------------------------------------------------------------------------\n";
+
+            std::cout << std::left 
+            << std::setw(15) << manager.totalStudents()
+            << std::setw(15) << manager.averageCgpa()
+            << std::setw(25) << manager.highestCgpaStudent()
+            << std::setw(25) << manager.lowestCgpaStudent()
+            << std::endl;
+            
+            std::cout << "=================================================================================================\n";
+
             break;
         }
 
         case 8:
         {
-            manager.highestCgpaStudent();
+            manager.filterByDepartment();
             break;
         }
 
         case 9:
         {
-            manager.lowestCgpaStudent();
-            break;
-        }
-
-        case 10:
-        {
-            manager.totalStudents();
-            break;
-        }
-
-        case 11:
-        {
-            std::cout << "At Risk Students (Attendance < 75%)\n";
+            std::cout << "\n========================================= STUDENTS AT RISK =========================================\n";
+            std::cout << "\n------------------------------------------- attendance < 75% -------------------------------------------\n";
             manager.studentBelowThreshold();
-            break;
-        }
-
-        case 12:
-        {
-            manager.filterByDepartment();
-            break;
+            std::cout << "-------------------------------------------------------------------------------------------------\n";
         }
 
         case 0:
@@ -238,7 +240,7 @@ int main(void)
         
         default:
 
-            std::cout << "Invalid Input!" << std::endl;
+            std::cout << "\nInvalid Input!" << std::endl;
             break;
         }
     }

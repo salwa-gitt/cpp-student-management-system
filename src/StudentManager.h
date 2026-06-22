@@ -1,15 +1,21 @@
 #pragma once
 #include "Student.h"
+#include "FileManager.h"
 #include <vector>
 #include <string>
 
 class StudentManager
 {
     private:
+
+        FileManager fileManager; 
         // making a database which stores all the student objects.
         std::vector<Student> students;
 
+
     public:
+
+        StudentManager();
 
         void addStudent(const Student& s);
 
@@ -38,16 +44,16 @@ class StudentManager
         void clearInputBuffer();
 
         // Average CGPA of all Students
-        void averageCgpa();
+        float averageCgpa();
 
         //getting highest CGPA
-        void highestCgpaStudent();
+        std::string highestCgpaStudent();
 
         //getting lower CGPA
-        void lowestCgpaStudent();
+        std::string lowestCgpaStudent();
 
         //Total students
-        void totalStudents();
+        int totalStudents();
 
         //student below 75% in attendence
         void studentBelowThreshold();
