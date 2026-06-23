@@ -194,26 +194,25 @@ int main(void)
         case 7:
         {
 
-            std::cout << "\n========================================= SYSTEM STATISTICS =========================================\n";
+            std::cout << "------------------------------------ SYSTEM STATISTICS ------------------------------------------\n\n";
             
 
             std::cout << std::left 
-            << std::setw(15) << "Total Students"
+            << std::setw(18) << "Total Students"
             << std::setw(15) << "Avg CGPA"
-            << std::setw(25) << "Highest CGPA Student"
-            << std::setw(25) << "Lowest CGPA Student"
-            << std::endl;
+            << std::setw(30) << "Highest CGPA Student"
+            << std::setw(30) << "Lowest CGPA Student"
+            << "\n";
 
-            std::cout << "-------------------------------------------------------------------------------------------------\n";
 
             std::cout << std::left 
-            << std::setw(15) << manager.totalStudents()
+            << std::setw(18) << manager.totalStudents()
             << std::setw(15) << manager.averageCgpa()
-            << std::setw(25) << manager.highestCgpaStudent()
-            << std::setw(25) << manager.lowestCgpaStudent()
+            << std::setw(30) << manager.highestCgpaStudent()
+            << std::setw(30) << manager.lowestCgpaStudent()
             << std::endl;
             
-            std::cout << "=================================================================================================\n";
+            std::cout << "\n                                     -----------------                                     \n";
 
             break;
         }
@@ -234,7 +233,7 @@ int main(void)
 
         case 0:
         {
-            std::cout << "\nExiting Program..." << std::endl;
+            std::cout << "\nExiting Program...\n" << std::endl;
             return 0;
         }
         

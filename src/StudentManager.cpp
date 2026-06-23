@@ -2,6 +2,7 @@
 #include "FileManager.h"
 #include "Student.h"
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <limits>
 #include <iomanip>
@@ -526,7 +527,11 @@ std::string StudentManager::highestCgpaStudent()
         }
     }
 
-    return best->getName() + " (" + std::to_string(best->getCgpa()) + ")";
+    // Create a stream to format the output string
+    std::ostringstream oss;
+    oss << best->getName() << " (" << std::fixed << std::setprecision(2) << best->getCgpa() << ")";
+    
+    return oss.str();
 }
 
 std::string StudentManager::lowestCgpaStudent()
@@ -546,7 +551,11 @@ std::string StudentManager::lowestCgpaStudent()
         }
     }
 
-    return worst->getName() + " (" + std::to_string(worst->getCgpa()) + ")";
+    // Create a stream to format the output string
+    std::ostringstream oss;
+    oss << worst->getName() << " (" << std::fixed << std::setprecision(2) << worst->getCgpa() << ")";
+    
+    return oss.str();
 }
 
 int StudentManager::totalStudents()

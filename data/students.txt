@@ -1,3 +1,3 @@
 ID | Name | Age | Department | CGPA | Attendance%
-salwa | salwaja | 22 | swe | 3.2 | 33
-kaslommss | kalsoom bibi | 22 | botany | 2.3 | 33
+fr345 | Jhon Brick | 23 | CS | 3.2 | 78
+fr2432 | Samsun Son | 22 | SWE | 3.4 | 78
